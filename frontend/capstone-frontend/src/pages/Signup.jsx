@@ -40,8 +40,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = {};
-        // Validation logic...
-
+        
         if (Object.keys(errors).length === 0) {
             try {
                 // Send form data to backend API for user registration
@@ -54,6 +53,8 @@ const Signup = () => {
                     
                 });console.log(formData)
                 if (response.ok) {
+                     // Set user's first name in local storage
+                    localStorage.setItem('firstName', formData.firstName);
                     // User registration successful, redirect to dashboard
                     navigate('/dashboard');
                 } else {

@@ -13,13 +13,31 @@ const Dashboard = () => {
         }
     }, [user]);
 
+
+
     // Function to fetch recent activity from the backend
     const fetchRecentActivity = async () => {
         try {
-            // Replace the URL with your backend URL
-            const response = await fetch('http://localhost:5000/User');
-            const data = await response.json();
-            } catch (error) {
+            // Fetch recent activity from the backend for Log Mood
+            const logMoodResponse = await fetch('http://localhost:5000/MoodEntry/logMood');
+            const logMoodData = await logMoodResponse.json();
+            console.log('Log Mood Data:', logMoodData);
+
+            // Fetch recent activity from the backend for Set Goals
+            const setGoalsResponse = await fetch('http://localhost:5000/Goal/setGoals');
+            const setGoalsData = await setGoalsResponse.json();
+
+            // Fetch recent activity from the backend for Journal Entry
+            const journalEntryResponse = await fetch('http://localhost:5000/JournalEntry/journalEntry');
+            const journalEntryData = await journalEntryResponse.json();
+
+            // Combine all recent activities into one array
+            const combinedRecentActivity = [...logMoodData, ...setGoalsData, ...journalEntryData];
+            console.log('Combined Recent Activity:', combinedRecentActivity)
+
+            // Set the combined recent activity to state
+            setRecentActivity(combinedRecentActivity);
+        } catch (error) {
             console.error('Error fetching recent activity:', error);
         }
     };
@@ -28,6 +46,7 @@ const Dashboard = () => {
     useEffect(() => {
         fetchRecentActivity();
     }, []);
+
 
     return (
         <div className="dashboard-container">

@@ -3,19 +3,35 @@
 import mongoose from 'mongoose';
 
 const goalSchema = new mongoose.Schema({
-    title: { 
-        type: String, 
-        required: true 
+    title: {
+        type: String,
+        required: true
     },
     description: String,
-    dueDate: Date,
-    completed: { 
-        type: Boolean, 
-        default: false 
+
+    startdate: {
+        type: Date,
+        required: true
+    }, // Add startDate field
+
+    duration: {
+        type: String,
+        required: true
+    }, // Add duration field
+
+    status: {
+        type: String,
+        required: true
     },
-    user: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User' 
+
+    completed: {
+        type: Boolean,
+        default: false
+    },
+
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
 });
 
