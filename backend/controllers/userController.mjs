@@ -46,6 +46,7 @@ router.put('/:id', async (req, res) => {
 
 // CREATE - Add new user
 router.post('/', async (req, res) => {
+    console.log(req.body)
     try {
         // // Check if required fields are present in the request body
         // const { username, email, password } = req.body;
@@ -57,8 +58,8 @@ router.post('/', async (req, res) => {
         const newUser = await User.create(req.body);
         res.status(201).send(newUser);
     } catch (err) {
+        console.log(err)
         res.status(400).send(err)
-        // json({ message: err.message });
     }
 });
 

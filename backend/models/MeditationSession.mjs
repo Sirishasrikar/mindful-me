@@ -3,10 +3,19 @@
 import mongoose from 'mongoose';
 
 const meditationSessionSchema = new mongoose.Schema({
-    duration: { type: Number, required: true },
-    date: { type: Date, required: true },
+    duration: { 
+        type: Number, 
+        required: true 
+    },
+    date: { 
+        type: Date, 
+        required: true 
+    },
     feedback: String,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    user: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User' 
+    },
 });
 
 const MeditationSession = mongoose.model('MeditationSession', meditationSessionSchema);

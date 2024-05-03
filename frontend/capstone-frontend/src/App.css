@@ -1,0 +1,281 @@
+/* src/App.css */
+
+/* Body styles */
+body {
+  /* Add the path to your background image */
+  background-image: url('./images/lotus.jpg');
+  /* Set background size and position */
+  background-size: cover;
+  background-position: center;
+  /* Optionally, add fallback background color */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Adjust opacity as needed */
+  /* Prevent background image from repeating */
+  background-repeat: no-repeat;
+  /* Ensure background covers entire viewport */
+  height: 100vh;
+  margin: 0;
+  /* Remove default margin */
+  padding: 0;
+  /* Remove default padding */
+}
+
+/* Navigation bar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Adjust opacity as needed */
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add shadow for depth */
+  z-index: 1000;
+  /* Ensure it appears above blurred background */
+  backdrop-filter: blur(8px);
+  /* Apply blur effect to the background */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  /* Adjust text color */
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.nav-item {
+  margin-left: 1rem;
+}
+
+.nav-link {
+  color: #333;
+  /* Adjust text color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  /* Add smooth color transition */
+}
+
+.nav-link:hover {
+  color: #555;
+  /* Adjust hover text color */
+}
+
+/* App.css */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: aqua;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.bold-label {
+  font-weight: bold;
+  color:  rgb(9, 9, 238);
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recent-activity {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-link {
+  margin-bottom: 10px;
+}
+/*Mood Tracker page */
+
+.react-calendar {
+  border: 2px double rgb(9, 9, 238); /* Set double border with black color */
+  border-radius: 10px; /* Set border radius for rounded corners */
+}
+
+
+.mood-tracker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Adjust alignment as needed */
+  gap: 20px; /* Adjust spacing between elements */
+}
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between calendar and date text */
+  color:  rgb(9, 9, 238)
+}
+
+.mood-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between dropdown and label */
+}
+
+.notes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px; /* Adjust spacing between textarea and label */
+}
+
+/* Additional styling for specific elements within .notes */
+.notes textarea {
+  width: 300px; /* Adjust width as needed */
+  height: 100px; /* Adjust height as needed */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Signup page */
+
+/* Center the form container */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ensure the container fills the viewport height */
+}
+
+/* Style form elements */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  color: rgb(9, 9, 238); /* Set font color */
+  font-weight: bold;
+}
+
+input,
+select {
+    width: 250px; /* Adjust width as needed */
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.country-label {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+button[type="submit"] {
+  background-color: rgb(9, 9, 238); /* Set button background color */
+  color: #fff; /* Set button text color */
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 14px; /* Set button font size */
+}
+
+/* Additional styling for error messages */
+.error-message {
+  color: red;
+  font-size: 12px;
+}
+
+/* knowmore page*/
+
+.know-more-container {
+  text-align: center;
+  color: rgb(9, 185, 238);
+  font-weight: bold;
+}
+
+.links-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.link {
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid rgb(9, 185, 238);
+  border-radius: 10px;
+}
+
+.link h2 {
+  margin-bottom: 10px;
+}
+
+.know-more-container section {
+  display: none;
+  margin-top: 20px;
+}
+
+.know-more-container section.active {
+  display: block;
+}
+
+.know-more-container nav {
+  text-align: center;
+}
+
+.know-more-container nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.know-more-container nav ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.know-more-container nav ul li a {
+  color: rgb(9, 9, 238);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.know-more-container nav ul li a:hover {
+  text-decoration: underline;
+}

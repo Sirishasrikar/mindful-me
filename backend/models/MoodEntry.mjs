@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 const moodEntrySchema = new mongoose.Schema({
-    mood: { type: String, enum: ['happy', 'sad', 'angry', 'calm', 'anxious', 'excited'], required: true },
+    mood: { type: String, enum: ['happy', 'sad', 'angry', 'confused', 'depressed', 'calm', 'anxious', 'excited'], required: true },
     date: { type: Date, required: true },
     notes: String,
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
