@@ -40,11 +40,52 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const errors = {};
-        
-        if (Object.keys(errors).length === 0) {
+
+        // Validation checks
+    if (!formData.firstName.trim()) {
+        errors.firstName = 'First name is required';
+    }
+
+    if (!formData.lastName.trim()) {
+        errors.lastName = 'Last name is required';
+    }
+
+    if (!formData.dob.trim()) {
+        errors.dob = 'Date of Birth is required';
+    } else if (!isValidDate(formData.dob)) {
+        errors.dob = 'Invalid date format';
+    }
+
+    if (!formData.email.trim()) {
+        errors.email = 'Email is required';
+    } else if (!isValidEmail(formData.email)) {
+        errors.email = 'Invalid email format';
+    }
+
+    if (!formData.password.trim()) {
+        errors.password = 'Password is required';
+    } else if (formData.password.length < 6) {
+        errors.password = 'Password must be at least 6 characters long';
+    }
+
+    if (!formData.confirmPassword.trim()) {
+        errors.confirmPassword = 'Confirm Password is required';
+    } else if (formData.confirmPassword !== formData.password) {
+        errors.confirmPassword = 'Passwords do not match';
+    }
+
+    if (!formData.country.trim()) {
+        errors.country = 'Country/Region is required';
+    }
+
+    // Set errors and prevent form submission if there are validation errors
+    if (Object.keys(errors).length > 0) {
+        setErrors(errors);
+        return;
+    }
             try {
                 // Send form data to backend API for user registration
-                const response = await fetch('http://localhost:5000/User', {
+                const response = await fetch('http://localhost:5000/User/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -65,13 +106,23 @@ const Signup = () => {
                 // Handle network errors or exceptions
                 console.error('Error registering user:', error.message);
             }
-        } else {
-            setErrors(errors);
-        }
-    };
-return (
-    <div className="signup-container">
-        <form onSubmit={handleSubmit}>
+            };
+
+            // Function to validate email format
+const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};
+
+// Function to validate date format (YYYY-MM-DD)
+const isValidDate = (date) => {
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    return dateRegex.test(date);
+};
+
+        return (
+            <div className="signup-container">
+                <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="firstName">First Name:</label>
                 <input

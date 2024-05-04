@@ -7,6 +7,7 @@ import Goal from '../models/Goal.mjs';
 // Create a new goal
 router.post('/setGoals', async (req, res) => {
     try {
+        console.log(req.body); // Log received request body to verify data
         const { title, description, startdate, duration, status } = req.body;
         const newGoal = new Goal({ title, description, startdate, duration, status });
         await newGoal.save();

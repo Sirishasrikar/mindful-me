@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true // Ensures email is unique and acts as the unique identifier
     },
     password: {
         type: String,
@@ -26,8 +27,9 @@ const userSchema = new mongoose.Schema({
     country: {
         type: String
     }
+    }, {
+        timestamps: true // Adds createdAt and updatedAt fields
 
-    // profilePicture: String,
 });
 
 const User = mongoose.model('User', userSchema);

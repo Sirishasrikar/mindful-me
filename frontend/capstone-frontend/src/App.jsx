@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Journal from './pages/Journal';
 import KnowMore from './pages/KnowMore';
 import Dashboard from './pages/Dashboard';
 import MoodTracker from './pages/MoodTracker';
@@ -28,6 +29,7 @@ const App = () => {
         {<Route path="/log-mood" element={<MoodTracker />} />}
         {<Route path="/knowmore" element={<KnowMore />} />}
         {<Route path="/set-goals" element={<Goals />} />}
+        {<Route path="/write-journal" element={<Journal />} />}
         {<Route path="/community-resources" element={<CommunityResources />} />}
       </Routes>
     </Router>

@@ -49,6 +49,7 @@ const Goals = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(JSON.stringify(formData)); // Log form data to verify before sending request
             const response = await fetch('http://localhost:5000/Goal/setGoals', {
                 method: 'POST',
                 headers: {

@@ -4,14 +4,14 @@ import { useAuth } from '../AuthContext';
 
 const Dashboard = () => {
     const { user } = useAuth(); // Access user object from context
-    const [firstName, setFirstName] = useState('User'); // State to store the username
+    // const [firstName, setFirstName] = useState('User'); // State to store the username
     const [recentActivity, setRecentActivity] = useState([]); // State to store recent activity
 
-    useEffect(() => {
-        if (user && user.firstName) {
-            setFirstName(user.firstName); // Set username if available in user object
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (user && user.firstName) {
+    //         setFirstName(user.firstName); // Set username if available in user object
+    //     }
+    // }, [user]);
 
 
 
@@ -28,11 +28,11 @@ const Dashboard = () => {
             const setGoalsData = await setGoalsResponse.json();
 
             // Fetch recent activity from the backend for Journal Entry
-            const journalEntryResponse = await fetch('http://localhost:5000/JournalEntry/journalEntry');
+            const journalEntryResponse = await fetch('http://localhost:5000/JournalEntry/journal');
             const journalEntryData = await journalEntryResponse.json();
 
             // Combine all recent activities into one array
-            const combinedRecentActivity = [...logMoodData, ...setGoalsData, ...journalEntryData];
+            const combinedRecentActivity = [...logMoodData.slice(-3), ...setGoalsData.slice(-3), ...journalEntryData.slice(-3)];
             console.log('Combined Recent Activity:', combinedRecentActivity)
 
             // Set the combined recent activity to state
@@ -45,7 +45,7 @@ const Dashboard = () => {
     // useEffect hook to fetch recent activity when the component mounts
     useEffect(() => {
         fetchRecentActivity();
-    }, []);
+    }, [user]);
 
 
     return (

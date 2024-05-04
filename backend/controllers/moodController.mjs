@@ -3,30 +3,24 @@
 import express from 'express';
 const router = express.Router();
 import MoodEntry from '../models/MoodEntry.mjs';
+import jwt from 'jsonwebtoken'; // Import jwt
 
-// Add new mood entry
+// Add new mood entry (modified on 05/03)
 router.post('/logMood', async (req, res) => {
     try {
         const { mood, notes, date } = req.body;
+        const token = req.headers.authorization.split(' ')[1]; // Assuming token is sent in the header
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        const userEmail = decodedToken.email;
+
         const newMoodEntry = new MoodEntry({
             mood,
-            date: new Date(),
-            notes
-            // user: req.user // Assuming you have middleware to extract the user from the token
+            date: new Date(), // Assuming you want to use the current date and time
+            notes,
+            user: userEmail // Associate the mood entry with the user's email
         });
         await newMoodEntry.save();
         res.status(201).json({ message: 'Mood entry logged successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Server error' });
-    }
-});
-
-// Get all mood entries
-router.get('/', async (req, res) => {
-    try {
-        const entries = await MoodEntry.find({});
-        res.status(200).json(entries);
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -47,6 +41,5 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Add more route handlers as needed
-
 export default router;
+

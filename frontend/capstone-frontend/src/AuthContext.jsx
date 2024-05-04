@@ -7,15 +7,13 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        // Check if user is logged in
-        const token = localStorage.getItem('token');
-        if (token) {
+        
             // Fetch user data using token from backend
             fetch('http://localhost:5000/User', {
                 method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
+                // headers: {
+                //     'Authorization': `Bearer ${token}`
+                // }
             })
                 .then(response => response.json())
                 .then(data => {
@@ -24,12 +22,12 @@ export const AuthProvider = ({ children }) => {
                 .catch(error => {
                     console.error('Error fetching user data:', error);
                 });
-        }
+        
     }, []);
 
     const signup = async (userData) => {
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch('http://localhost:5000/User/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -49,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
         try {
-            const response = await fetch('http://localhost:5000/Auth/login', {
+            const response = await fetch('http://localhost:5000/User/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

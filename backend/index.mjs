@@ -10,7 +10,7 @@ import goalRoutes from "./controllers/goalController.mjs"
 import journalRoutes from "./controllers/journalController.mjs"
 import meditationRoutes from "./controllers/meditationController.mjs"
 import moodRoutes from "./controllers/moodController.mjs"
-import authRoutes from "./controllers/authController.mjs"
+// import authRoutes from "./controllers/authController.mjs"
 
 dotenv.config();
 
@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Define routes
 app.use("/User",userRoutes);
-app.use("/Auth", authRoutes);
+// app.use("/Auth", authRoutes);
 app.use("/Goal",goalRoutes);
 app.use("/JournalEntry",journalRoutes);
 app.use("/MeditationSession",meditationRoutes);

@@ -20,6 +20,11 @@ body {
   /* Remove default padding */
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+ }
+
 /* Navigation bar styles */
 .navbar {
   position: fixed;
@@ -37,6 +42,11 @@ body {
   /* Apply blur effect to the background */
 }
 
+.navbar-container {
+  display: flex;
+  justify-content: center; /* Center items horizontally */
+}
+
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
@@ -48,8 +58,12 @@ body {
   margin-left: auto;
 }
 
-.nav-item {
+.nav-items {
   margin-left: 1rem;
+  display: flex;
+  justify-content: space-around; /* Evenly distribute items */
+  width: 50%; /* Set width to center items */
+  font-family: 'Roboto', cursive; /* Apply custom font */
 }
 
 .nav-link {
@@ -72,7 +86,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: aqua;
+  color: rgb(9, 9, 238);
 }
 
 .form-group {
