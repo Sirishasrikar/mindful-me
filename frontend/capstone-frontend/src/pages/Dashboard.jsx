@@ -1,72 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import "../App.css"
 
 const Dashboard = () => {
     const { user } = useAuth(); // Access user object from context
-    // const [firstName, setFirstName] = useState('User'); // State to store the username
-    const [recentActivity, setRecentActivity] = useState([]); // State to store recent activity
+    const [recentGoals, setRecentGoals] = useState([]);
+    
+    // Fetch recent activity on component mount
+    useEffect(() => {
+        fetchRecentGoals();
+    }, []);
 
-    // useEffect(() => {
-    //     if (user && user.firstName) {
-    //         setFirstName(user.firstName); // Set username if available in user object
-    //     }
-    // }, [user]);
-
-
-
-    // Function to fetch recent activity from the backend
-    const fetchRecentActivity = async () => {
+    const fetchRecentGoals = async () => {
         try {
-            // Fetch recent activity from the backend for Log Mood
-            const logMoodResponse = await fetch('http://localhost:5000/MoodEntry/logMood');
-            const logMoodData = await logMoodResponse.json();
-            console.log('Log Mood Data:', logMoodData);
-
-            // Fetch recent activity from the backend for Set Goals
-            const setGoalsResponse = await fetch('http://localhost:5000/Goal/setGoals');
-            const setGoalsData = await setGoalsResponse.json();
-
-            // Fetch recent activity from the backend for Journal Entry
-            const journalEntryResponse = await fetch('http://localhost:5000/JournalEntry/journal');
-            const journalEntryData = await journalEntryResponse.json();
-
-            // Combine all recent activities into one array
-            const combinedRecentActivity = [...logMoodData.slice(-3), ...setGoalsData.slice(-3), ...journalEntryData.slice(-3)];
-            console.log('Combined Recent Activity:', combinedRecentActivity)
-
-            // Set the combined recent activity to state
-            setRecentActivity(combinedRecentActivity);
+            console.log('heeeeeeeeeeeeeeeeeeeee')
+            const response = await fetch(`http://localhost:5000/Goal/${user._id}`);
+            console.log('heeeeeeeeeeeeeeeeeeeee')
+            if (response.ok) {
+                const data = await response.json();
+                setRecentGoals(data.slice(-3)); // Get the last 3 goals
+            } else {
+                console.error('Failed to fetch recent goals:', response.statusText);
+            }
         } catch (error) {
-            console.error('Error fetching recent activity:', error);
+            console.error('Error fetching recent goals:', error.message);
         }
     };
-
-    // useEffect hook to fetch recent activity when the component mounts
-    useEffect(() => {
-        fetchRecentActivity();
-    }, [user]);
-
+    // // Function to fetch recent activity from the backend
+    // const fetchRecentActivity = async () => {
+    //     try {
+    //         // Fetch recent activity data from the backend API
+    //         // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
+    //         const response = await fetch('YOUR_API_ENDPOINT/recentActivity');
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             // Update recent activity state with the fetched data
+    //             setRecentActivity(data);
+    //         } else {
+    //             console.error('Failed to fetch recent activity:', response.statusText);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching recent activity:', error);
+    //     }
+    // };
 
     return (
         <div className="dashboard-container">
-            <div className="header">
-                <h1>MindfulMe</h1>
-                <p>Welcome, {user && user.firstName ? user.firstName : 'User'}!</p>
-            </div>
+            <h2>Welcome to Your Dashboard</h2>
+            <p>Hi, {user && user.firstName ? user.firstName : 'User'}!</p>
+            {/* Display recent activity */}
             <div className="recent-activity">
-                <h2>Recent Activity:</h2>
+                <h3>Recent Goals</h3>
                 <ul>
-                    {recentActivity.map((activity, index) => (
-                        <li key={index}>{activity.activityName}</li>
+                    {recentGoals.map((goal) => (
+                        <div key={goal._id} className="goal-item">
+                            <p>{goal.title}</p>
+                            <p>{goal.description}</p>
+                            <p>Status: {goal.status}</p>
+                            </div>
                     ))}
                 </ul>
             </div>
-            <div className="actions">
-                <Link to="/start-meditation" className="action-link">Start Meditation Session</Link>
-                <Link to="/log-mood" className="action-link">Log Mood</Link>
-                <Link to="/write-journal" className="action-link">Write Journal Entry</Link>
-                <Link to="/set-goals" className="action-link">Set Wellness Goals</Link>
+            {/* Links to pages */}
+            <div className="page-links">
+            <Link to="/start-meditation" >Start Meditation Session</Link><br/>
+            <Link to="/log-mood">Log Mood</Link><br/>
+            <Link to="/set-goals">Set Goals</Link><br/>
+            <Link to="/write-journal">Write Journal Entry</Link><br/>
             </div>
         </div>
     );

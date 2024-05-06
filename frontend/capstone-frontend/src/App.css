@@ -86,7 +86,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: rgb(9, 9, 238);
+  color: rgba(242, 242, 5, 0.986);
 }
 
 .form-group {
@@ -110,33 +110,103 @@ body {
   color:  rgb(9, 9, 238);
 }
 
+/* Define styles for dashboard */
 .dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.header {
   text-align: center;
-  margin-bottom: 20px;
 }
 
+/* Define styles for headings */
+.dashboard-container h2,
+.dashboard-container h3 {
+  font-size: 3em; /* Three times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Contrast color */
+}
+
+/* Define styles for paragraphs */
+.dashboard-container p {
+  font-size: 2em; /* Two times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Contrast color */
+}
+
+/* Define styles for links */
+.dashboard-container a {
+  font-size: 2em; /* Two times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Contrast color */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Add space between links */
+.dashboard-container .page-links {
+  margin-top: 20px;
+}
+
+.dashboard-container .recent-activity li {
+  font-size: 2em; /* Two times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Contrast color */
+}
+
+/* Add styles for recent goals container */
 .recent-activity {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.actions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap */
+  justify-content: center; /* Center items horizontally */
 }
 
-.action-link {
-  margin-bottom: 10px;
+/* Add styles for each goal item */
+/* Add styles for each goal item */
+.goal-item {
+  background-color: #a96bab;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  max-width: 400px;
+  display: inline-block; /* Display items inline */
+  vertical-align: top; /* Align items at the top */
 }
+
+/* Add hover effect */
+.goal-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Add styling for form inputs */
+.form-input {
+  font-size: 2em; /* 2 times bigger */
+  color: rgba(5, 9, 242, 0.986); /* Font color */
+}
+
+/* Add styling for field labels */
+.field-label {
+  font-size: 2em; /* 2 times bigger */
+  color: rgba(242, 242, 5, 0.986); /* Font color */
+}
+
+/* Add styles for goals items in the Goals page */
+.goals-item {
+  font-size: 1em; /* Two times bigger */
+  color: rgba(242, 242, 5, 0.986); /* Font color */
+  margin-bottom: 20px; /* Add margin between goals */
+}
+
+/* Add styles for page headings */
+.page-heading {
+  font-size: 1em; /* Two times bigger */
+  color: rgba(242, 242, 5, 0.986); /* Font color */
+}
+
+/* Add styles for user greeting */
+.user-greeting {
+  font-size: 2em; /* Two times bigger */
+  color: rgba(242, 242, 5, 0.986); /* Font color */
+}
+
 /*Mood Tracker page */
 
 .react-calendar {

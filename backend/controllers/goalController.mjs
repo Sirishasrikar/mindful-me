@@ -7,11 +7,13 @@ import Goal from '../models/Goal.mjs';
 // Create a new goal
 router.post('/setGoals', async (req, res) => {
     try {
+        console.log("test");
         console.log(req.body); // Log received request body to verify data
-        const { title, description, startdate, duration, status } = req.body;
-        const newGoal = new Goal({ title, description, startdate, duration, status });
+        const { title, description, startdate, duration, status , uname} = req.body;
+        const newGoal = new Goal({ title, description, startdate, duration, status, uname });
         await newGoal.save();
         res.status(201).json(newGoal);
+        console.log(newGoal)
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Server error' });
@@ -21,6 +23,7 @@ router.post('/setGoals', async (req, res) => {
 // Get all goals
 router.get('/', async (req, res) => {
     try {
+        console.log('ddddddddddddddddddddddddddddddddddddddddddddd')
         const goals = await Goal.find({});
         res.status(200).json(goals);
     } catch (error) {
@@ -31,8 +34,16 @@ router.get('/', async (req, res) => {
 
 // Get goal by ID
 router.get('/:id', async (req, res) => {
+    //router.get('/getGoal', async (req, res) => {
     try {
-        const goal = await Goal.findById(req.params.id);
+
+        const uuid=req.params.id
+        console.log('iddddddddddddddddddddddddd',uuid)
+        //const goal = await Goal.find({user: req.params.id});
+        //const goal = await Goal.find({uname:'6633d90f15510329ff72c9de'});
+        const goal = await Goal.find({uname: uuid});
+        console.log('after the cal', goal)
+
         if (!goal) {
             return res.status(404).json({ message: 'Goal not found' });
         }
@@ -42,6 +53,9 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
+
+
+
 
 // Update goal by ID
 router.put('/:id', async (req, res) => {

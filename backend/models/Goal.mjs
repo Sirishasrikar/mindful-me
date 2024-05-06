@@ -29,10 +29,13 @@ const goalSchema = new mongoose.Schema({
         default: false
     },
 
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
+    uname: {
+    //     // type: mongoose.Schema.Types.ObjectId,
+    //     // ref: 'User'
+        type: String,
+        required: true
+    }
+    
 });
 
 const Goal = mongoose.model('Goal', goalSchema);

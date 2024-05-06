@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import "../App.css"
 
 const Goals = () => {
     const { user } = useAuth();
     const [goals, setGoals] = useState([]);
+    const [recentActivity, setRecentActivity] = useState([]);
     const [updateMessage, setUpdateMessage] = useState(''); // Declare update message state
     const [formData, setFormData] = useState({
         title: '',
         description: '',
         startdate: '',
         duration: '',
-        status: ''
+        status: '',
+        uname: user ? user._id : ''
+       //uname: 'srikar77'
     });
     const [confirmUpdate, setConfirmUpdate] = useState(false); // State to track confirmation
     const [selectedGoalId, setSelectedGoalId] = useState(null); // State to store selected goal ID
@@ -23,14 +27,15 @@ const Goals = () => {
     // Function to fetch goals from the backend
     const fetchGoals = async () => {
         try {
-            const response = await fetch('http://localhost:5000/Goal');
+            const response = await fetch(`http://localhost:5000/Goal/${user._id}`);
             if (response.ok) {
                 const data = await response.json();
                 // Sort the goals by creation date in descending order
                 const sortedGoals = data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-                // Select the last 5 goals
-                const last5Goals = sortedGoals.slice(0, 5);
-                setGoals(last5Goals);
+
+                // Select the last 3 goals
+                const last3Goals = sortedGoals.slice(0, 3);
+                setGoals(last3Goals);
             } else {
                 console.error('Failed to fetch goals:', response.statusText);
             }
@@ -58,16 +63,21 @@ const Goals = () => {
                 body: JSON.stringify(formData)
             });
             if (response.ok) {
+                // console.log({user:user.email})
                 // Goal added successfully, fetch goals again to update the list
                 fetchGoals();
+                setRecentActivity([...recentActivity, formData.title]);
+                // Limit recent activity to show only the last 3 entries
+                setRecentActivity(recentActivity.slice(-3));
                 // Reset form data
                 setFormData({
                     title: '',
                     description: '',
                     startdate: '',
                     duration: '',
-                    status: ''
-                });
+                    status: '',
+                    uname: ''
+                    });
             } else {
                 console.error('Failed to add goal');
             }
@@ -88,6 +98,7 @@ const Goals = () => {
                     startdate: data.startdate || '',
                     duration: data.duration || '',
                     status: data.status || '',
+                    uname: data.uname || ''
                 });
                 // Set selected goal ID
                 setSelectedGoalId(id);
@@ -123,7 +134,8 @@ const Goals = () => {
                         description: '',
                         startdate: '',
                         duration: '',
-                        status: ''
+                        status: '',
+                        uname: ''
                     });
                     // Set confirmation state back to false
                     setConfirmUpdate(false);
@@ -155,7 +167,8 @@ const Goals = () => {
                         description: '',
                         startdate: '',
                         duration: '',
-                        status: ''
+                        status: '',
+                        uname: ''
                     });
                 } else {
                     console.error('Failed to delete goal');
@@ -169,10 +182,11 @@ const Goals = () => {
 
     return (
         <div className="goals-container">
-            <h2>Goals</h2>
+            <h2 className="page-heading">Goals</h2>
+            <p className="user-greeting">Hi, {user && user.firstName ? user.firstName : 'User'}!</p>
             <form onSubmit={handleSubmit} className="goal-form">
                 <div className="form-group">
-                    <label htmlFor="title">Title:</label>
+                    <label htmlFor="title" className="field-label">Title:</label>
                     <input
                         type="text"
                         id="title"
@@ -180,20 +194,22 @@ const Goals = () => {
                         value={formData.title}
                         onChange={handleChange}
                         required
+                        className="form-input"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description" className="field-label">Description:</label>
                     <textarea
                         id="description"
                         name="description"
                         value={formData.description}
                         onChange={handleChange}
                         required
+                        className="form-input"
                     ></textarea>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="startdate">Start Date:</label>
+                    <label htmlFor="startdate" className="field-label">Start Date:</label>
                     <input
                         type="date"
                         id="startdate"
@@ -201,10 +217,11 @@ const Goals = () => {
                         value={formData.startdate}
                         onChange={handleChange}
                         required
+                        className="form-input"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="duration">Estimated Duration:</label>
+                    <label htmlFor="duration" className="field-label">Estimated Duration:</label>
                     <input
                         type="text"
                         id="duration"
@@ -212,16 +229,18 @@ const Goals = () => {
                         value={formData.duration}
                         onChange={handleChange}
                         required
+                        className="form-input"
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="status">Status:</label>
+                    <label htmlFor="status" className="field-label">Status:</label>
                     <select
                         id="status"
                         name="status"
                         value={formData.status}
                         onChange={handleChange}
                         required
+                        className="form-input"
                     >
                         <option value="">Select Status</option>
                         <option value="Not Started">Not Started</option>
@@ -229,6 +248,23 @@ const Goals = () => {
                         <option value="Completed">Completed</option>
                     </select>
                 </div>
+
+
+                <div className="form-group">
+                    <label htmlFor="uname"className="field-label">Uname:</label>
+                    <input
+                        type="text"
+                        id="uname"
+                        name="uname"
+                        value={formData.uname}
+                        //value='srikar77'
+                        onChange={handleChange}
+                        required
+                        readOnly 
+                        className="form-input"
+                    />
+                </div>
+                
                 {/* Display either Update or Confirm Update button based on confirmation state */}
                 {confirmUpdate ? (
                     <button type="button" onClick={handleConfirmUpdate}>Confirm Update</button>
@@ -241,7 +277,7 @@ const Goals = () => {
                 {goals.map((goal) => {
 
                     return (
-                        <li key={goal._id}>
+                        <li key={goal._id} className="goals-item">
                             {/* Render goal details */}
                             <div>Title: {goal.title}</div>
                             <div>Description: {goal.description}</div>
