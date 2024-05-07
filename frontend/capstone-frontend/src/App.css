@@ -8,18 +8,26 @@ body {
   background-size: cover;
   background-position: center;
   /* Optionally, add fallback background color */
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
   /* Adjust opacity as needed */
   /* Prevent background image from repeating */
   background-repeat: no-repeat;
   /* Ensure background covers entire viewport */
   height: 100vh;
   margin: 0;
+  min-height: 100vh; /* Ensure container covers entire viewport height */
+  padding-top: 50px; 
   /* Remove default margin */
   padding: 0;
   /* Remove default padding */
+  background-attachment: fixed; /* Fix the background image relative to the viewport */
 }
 
+.link {
+  color: blue; /* Change the color to your preferred color */
+  text-decoration: underline; /* Add underline for better visibility */
+  font-size: 1rem
+}
 @font-face {
   font-family: 'Roboto';
   src: url('./fonts/Roboto-Regular.ttf') format('truetype');
@@ -64,6 +72,7 @@ body {
   justify-content: space-around; /* Evenly distribute items */
   width: 50%; /* Set width to center items */
   font-family: 'Roboto', cursive; /* Apply custom font */
+  align-items: center;
 }
 
 .nav-link {
@@ -79,6 +88,20 @@ body {
   /* Adjust hover text color */
 }
 
+.nav-button {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 10px;
+  transition: transform 0.3s, font-size 0.3s background-color 0.3s;
+  border-radius: 20px;
+}
+
+.nav-button:hover {
+  transform: translateY(-3px);
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.1); /* Change the background color on hover */
+}
+
 /* App.css */
 .login-container {
   display: flex;
@@ -91,6 +114,7 @@ body {
 
 .form-group {
   margin-bottom: 1rem;
+  font-size: 1rem
 }
 
 .form-group input {
@@ -107,7 +131,8 @@ body {
 
 .bold-label {
   font-weight: bold;
-  color:  rgb(9, 9, 238);
+  color:  rgba(242, 242, 5, 0.986);
+  font-size: 2rem
 }
 
 /* Define styles for dashboard */
@@ -118,21 +143,29 @@ body {
 /* Define styles for headings */
 .dashboard-container h2,
 .dashboard-container h3 {
-  font-size: 3em; /* Three times bigger */
+  font-size: 2em; /* Three times bigger */
   font-weight: bold;
   color: rgba(242, 242, 5, 0.986); /* Contrast color */
 }
 
 /* Define styles for paragraphs */
 .dashboard-container p {
-  font-size: 2em; /* Two times bigger */
+  font-size: 1em; /* Two times bigger */
   font-weight: bold;
   color: rgba(242, 242, 5, 0.986); /* Contrast color */
 }
 
+/* Add styles for section headings */
+.section-heading {
+  font-size: 1em; /* Two times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Font color */
+  text-align: center; /* Center align */
+}
+
 /* Define styles for links */
 .dashboard-container a {
-  font-size: 2em; /* Two times bigger */
+  font-size: 1.5em; /* Two times bigger */
   font-weight: bold;
   color: rgba(242, 242, 5, 0.986); /* Contrast color */
   text-decoration: none; /* Remove underline */
@@ -159,7 +192,7 @@ body {
 /* Add styles for each goal item */
 /* Add styles for each goal item */
 .goal-item {
-  background-color: #a96bab;
+  /* background-color: rgba(237, 169, 240, 0.5); Transparent background */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -178,8 +211,8 @@ body {
 
 /* Add styling for form inputs */
 .form-input {
-  font-size: 2em; /* 2 times bigger */
-  color: rgba(5, 9, 242, 0.986); /* Font color */
+  font-size: 1em; /* 2 times bigger */
+  color: rgba(17, 70, 205, 0.986);; /* Font color */
 }
 
 /* Add styling for field labels */
@@ -205,6 +238,12 @@ body {
 .user-greeting {
   font-size: 2em; /* Two times bigger */
   color: rgba(242, 242, 5, 0.986); /* Font color */
+}
+
+.signup-container{
+  font-size: 2em; /* Two times bigger */
+  font-weight: bold;
+  color: rgba(242, 242, 5, 0.986); /* Contrast color */
 }
 
 /*Mood Tracker page */
@@ -259,6 +298,62 @@ body {
   border-radius: 4px;
 }
 
+/* JournalEntry Page styling*/
+
+.journal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+}
+
+.form-group {
+  margin-bottom: 20px; /* Add space between form groups */
+}
+
+.form-group label {
+  margin-right: 10px; /* Add space between label and input field */
+}
+
+#content {
+  width: 300px; /* Set width for content textarea */
+  height: 150px; /* Set height for content textarea */
+  resize: none; /* Disable resizing */
+}
+
+button {
+  margin-top: 20px; /* Add space between buttons and journal entries */
+}
+
+.journal-list {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0; /* Remove default padding */
+  color : rgba(242, 242, 5, 0.986);
+}
+
+.journal-list li {
+  margin-bottom: 20px; /* Add margin between each journal entry */
+}
+
+.journal-entry {
+  background-color: #f4f4f4; /* Set background color for each journal entry */
+  padding: 10px; /* Add padding to each journal entry */
+  border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+.journal-title {
+  font-weight: bold; /* Make the title bold */
+}
+
+.journal-content {
+  margin-top: 5px; /* Add margin between title and content */
+}
+
+.journal-date {
+  color: #888; /* Set color for date */
+  font-size: 0.8rem; /* Set font size for date */
+}
+
+
 /* Signup page */
 
 /* Center the form container */
@@ -275,8 +370,10 @@ body {
 }
 
 label {
-  color: rgb(9, 9, 238); /* Set font color */
+  color:rgba(242, 242, 5, 0.986);; /* Set font color */
   font-weight: bold;
+  font-size: 1.5em;
+
 }
 
 input,
@@ -311,13 +408,25 @@ button[type="submit"] {
 
 .know-more-container {
   text-align: center;
-  color: rgb(9, 185, 238);
+  color: rgba(242, 242, 5, 0.986);
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 .links-container {
   display: flex;
   justify-content: space-evenly;
+}
+
+.navigation-links {
+  margin-top: 50px; /* Adjust margin as needed */
+}
+
+.navigation-links a {
+  margin-right: 10px; /* Adjust margin between links */
+  font-weight: bold;
+  text-decoration: none; /* Remove underline from links */
+  color: rgba(242, 242, 5, 0.986); /* Adjust link color */
 }
 
 .link {

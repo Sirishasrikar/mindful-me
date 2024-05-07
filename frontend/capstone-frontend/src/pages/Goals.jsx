@@ -3,7 +3,13 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import "../App.css"
 
+const linkStyle = {
+    fontSize: '30px',
+    color: 'yellow'
+  };
+
 const Goals = () => {
+   
     const { user } = useAuth();
     const [goals, setGoals] = useState([]);
     const [recentActivity, setRecentActivity] = useState([]);
@@ -15,8 +21,9 @@ const Goals = () => {
         duration: '',
         status: '',
         uname: user ? user._id : ''
-       //uname: 'srikar77'
     });
+
+
     const [confirmUpdate, setConfirmUpdate] = useState(false); // State to track confirmation
     const [selectedGoalId, setSelectedGoalId] = useState(null); // State to store selected goal ID
 
@@ -75,9 +82,10 @@ const Goals = () => {
                     description: '',
                     startdate: '',
                     duration: '',
-                    status: '',
-                    uname: ''
-                    });
+                    status: '' ,
+                    //uname: ''
+                    uname: user ? user._id : ''
+                });
             } else {
                 console.error('Failed to add goal');
             }
@@ -98,7 +106,8 @@ const Goals = () => {
                     startdate: data.startdate || '',
                     duration: data.duration || '',
                     status: data.status || '',
-                    uname: data.uname || ''
+                    //uname: data.uname || ''
+                    uname: user ? user._id : ''|| ''
                 });
                 // Set selected goal ID
                 setSelectedGoalId(id);
@@ -127,7 +136,7 @@ const Goals = () => {
                     // Goal updated successfully, fetch goals again to update the list
                     fetchGoals();
                     // Show update message
-                    setUpdateMessage('Goal updated successfully.');
+                    setUpdateMessage(<span style={{ fontSize: '20px', color: 'rgba(242, 242, 5, 0.986)' }}>Goal updated successfully.</span>);
                     // Reset form data
                     setFormData({
                         title: '',
@@ -135,7 +144,7 @@ const Goals = () => {
                         startdate: '',
                         duration: '',
                         status: '',
-                        uname: ''
+                        uname: user ? user._id : ''
                     });
                     // Set confirmation state back to false
                     setConfirmUpdate(false);
@@ -168,7 +177,7 @@ const Goals = () => {
                         startdate: '',
                         duration: '',
                         status: '',
-                        uname: ''
+                        uname: user ? user._id : ''
                     });
                 } else {
                     console.error('Failed to delete goal');
@@ -251,20 +260,20 @@ const Goals = () => {
 
 
                 <div className="form-group">
-                    <label htmlFor="uname"className="field-label">Uname:</label>
+                    <label htmlFor="uname" ></label>
                     <input
-                        type="text"
+                        type="hidden"
                         id="uname"
                         name="uname"
                         value={formData.uname}
                         //value='srikar77'
                         onChange={handleChange}
                         required
-                        readOnly 
+                        readOnly
                         className="form-input"
                     />
                 </div>
-                
+
                 {/* Display either Update or Confirm Update button based on confirmation state */}
                 {confirmUpdate ? (
                     <button type="button" onClick={handleConfirmUpdate}>Confirm Update</button>
@@ -293,7 +302,9 @@ const Goals = () => {
             </ul>
             {/* Update message */}
             {updateMessage && <p>{updateMessage}</p>}
-            <Link to="/dashboard">Back to Dashboard</Link>
+            <p style={{ fontSize: '30px'}}>
+            <Link to="/dashboard" style={linkStyle}>Back to Dashboard</Link>
+            </p>
         </div>
     );
 };

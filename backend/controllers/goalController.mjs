@@ -23,7 +23,6 @@ router.post('/setGoals', async (req, res) => {
 // Get all goals
 router.get('/', async (req, res) => {
     try {
-        console.log('ddddddddddddddddddddddddddddddddddddddddddddd')
         const goals = await Goal.find({});
         res.status(200).json(goals);
     } catch (error) {
@@ -36,10 +35,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     //router.get('/getGoal', async (req, res) => {
     try {
-
         const uuid=req.params.id
-        console.log('iddddddddddddddddddddddddd',uuid)
-        //const goal = await Goal.find({user: req.params.id});
+        // /const goal = await Goal.find({user: req.params.id});
         //const goal = await Goal.find({uname:'6633d90f15510329ff72c9de'});
         const goal = await Goal.find({uname: uuid});
         console.log('after the cal', goal)
@@ -53,8 +50,6 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }
 });
-
-
 
 
 // Update goal by ID

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext'; // Import AuthContext
+import "../App.css"
 
 const Login = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);

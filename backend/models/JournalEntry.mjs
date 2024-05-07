@@ -15,9 +15,12 @@ const journalEntrySchema = new mongoose.Schema({
         type: Date, 
         required: true 
     },
-    user: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User' },
+    uname: {
+        //     // type: mongoose.Schema.Types.ObjectId,
+        //     // ref: 'User'
+            type: String,
+            required: true
+        }
 });
 
 const JournalEntry = mongoose.model('JournalEntry', journalEntrySchema);

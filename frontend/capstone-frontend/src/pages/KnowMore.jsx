@@ -1,8 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const KnowMore = () => {
     // State to track which section is currently active
     const [activeSection, setActiveSection] = useState(null);
+    const navigate = useNavigate(); // Access the navigate function
+
+    const handleHome = () => {
+        navigate('/'); // Navigate to the Knowmore page
+    };
+
+    const handleLoginClick = () => {
+        navigate('/login'); // Navigate to the Login page
+    };
+
+    const handleSignupClick = () => {
+        navigate('/signup'); // Navigate to the Signup page
+    };
+
+
 
     // Function to handle link clicks and scroll to the corresponding section
     const scrollToSection = (sectionId) => {
@@ -14,18 +30,17 @@ const KnowMore = () => {
     }
     return (
         <div className="know-more-container">
-            <nav>
-                <ul>
-                    <li><a href="#overview" onClick={() => scrollToSection("overview")}>Overview Of Features</a></li>
-                    <li><a href="#how-it-works" onClick={() => scrollToSection("how-it-works")}>How It Works</a></li>
-                    <li><a href="#benefits" onClick={() => scrollToSection("benefits")}>Benefits of Mindfulness</a></li>
-                    <li><a href="#testimonials" onClick={() => scrollToSection("testimonials")}>Testimonials</a></li>
-                    <li><a href="#meet-the-team" onClick={() => scrollToSection("meet-the-team")}>Meet The Team</a></li>
-                    <li><a href="#faqs" onClick={() => scrollToSection("faqs")}>FAQs</a></li>
-                    <li><a href="#community-resources" onClick={() => scrollToSection("community-resources")}>Community Resources</a></li>
-                    <li><a href="#contact" onClick={() => scrollToSection("contact")}>Contact Information</a></li>
-                </ul>
-            </nav>
+            {/* Navigation links */}
+            <div className="navigation-links">
+                <a href="#overview" onClick={() => scrollToSection("overview")}>Overview Of Features</a><br /><br />
+                <a href="#how-it-works" onClick={() => scrollToSection("how-it-works")}>How It Works</a><br /><br />
+                <a href="#benefits" onClick={() => scrollToSection("benefits")}>Benefits of Mindfulness</a><br /><br />
+                <a href="#testimonials" onClick={() => scrollToSection("testimonials")}>Testimonials</a><br /><br />
+                <a href="#meet-the-team" onClick={() => scrollToSection("meet-the-team")}>Meet The Team</a><br /><br />
+                <a href="#faqs" onClick={() => scrollToSection("faqs")}>FAQs</a><br /><br />
+                <a href="#community-resources" onClick={() => scrollToSection("community-resources")}>Community Resources</a><br /><br />
+                <a href="#contact" onClick={() => scrollToSection("contact")}>Contact Information</a><br /><br />
+            </div>
             <section id="overview" className={activeSection === "overview" ? "active" : ""}>
                 <h2>Overview Of Features</h2><br /><br />
                 <p>Welcome to MindfulMe, your all-in-one platform for mindfulness and well-being. <br /><br /> MindfulMe offers a comprehensive set of features designed to help you cultivate mindfulness, manage stress, and enhance your overall quality of life.<br /><br />
@@ -103,28 +118,28 @@ const KnowMore = () => {
             </section>
 
             <section id="meet-the-team" className={activeSection === "meet-the-team" ? "active" : ""}>
-    <h2>Meet The Team</h2>
-    <div className="team-member">
-        <img src="/images/jairaj.jpg" alt="Team Member 1" />
-        <h3>Jairaj Rachuri</h3>
-        <p>Co-Founder & CEO</p>
-    </div>
-    <div className="team-member">
-        <img src="/images/remy.jpg" alt="Team Member 2" />
-        <h3>Remy Fernandez</h3>
-        <p>Co-Founder & CTO</p>
-    </div>
-    <div className="team-member">
-        <img src="/images.michael.jpg" alt="Team Member 3" />
-        <h3>Michael Johnson</h3>
-        <p>Lead Developer</p>
-    </div>
-    <div className="team-member">
-        <img src="/images/sarah.jpg" alt="Team Member 4" />
-        <h3>Sarah Johnson</h3>
-        <p>UX/UI Designer</p>
-    </div>
-</section>
+                <h2>Meet The Team</h2>
+                <div className="team-member">
+                    <img src="/images/jairaj.jpg" alt="Team Member 1" />
+                    <h3>Jairaj Rachuri</h3>
+                    <p>Co-Founder & CEO</p>
+                </div>
+                <div className="team-member">
+                    <img src="/images/remy.jpg" alt="Team Member 2" />
+                    <h3>Remy Fernandez</h3>
+                    <p>Co-Founder & CTO</p>
+                </div>
+                <div className="team-member">
+                    <img src="/images.michael.jpg" alt="Team Member 3" />
+                    <h3>Michael Johnson</h3>
+                    <p>Lead Developer</p>
+                </div>
+                <div className="team-member">
+                    <img src="/images/sarah.jpg" alt="Team Member 4" />
+                    <h3>Sarah Johnson</h3>
+                    <p>UX/UI Designer</p>
+                </div>
+            </section>
             <section id="faqs" className={activeSection === "faqs" ? "active" : ""}>
                 <h2>FAQs</h2>
                 <div className="faq-item">
@@ -176,7 +191,7 @@ const KnowMore = () => {
                     <p>A: Yes, you can share your progress and achievements with friends by connecting your account to social media platforms.</p>
                 </div>
             </section>
-       
+
             <section id="community-resources">
                 <h2>Community Resources</h2>
                 <p>Provide resources and links to the community for further support.</p>
@@ -185,6 +200,15 @@ const KnowMore = () => {
                 <h2>Contact Information</h2>
                 <p>Display contact information for users to reach out for support or inquiries.</p>
             </section>
+            <div style={{ margin: '10px 0' }}>
+                <button onClick={handleHome}>Home</button>
+            </div>
+            <div style={{ margin: '10px 0' }}>
+                <button onClick={handleLoginClick}>Login</button>
+            </div>
+            <div style={{ margin: '10px 0' }}>
+                <button onClick={handleSignupClick}>Signup</button>
+            </div>
         </div>
     );
 };

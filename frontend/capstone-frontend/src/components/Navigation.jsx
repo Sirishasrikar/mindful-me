@@ -8,10 +8,10 @@ const Navigation = () => {
         <AppBar position="sticky" className="navbar">
             <Toolbar className="navbar-container">
             <div className="navbar-items">  
-                <Button color="inherit" component={Link} to="/">Home</Button>
-                <Button color="inherit" component={Link} to="/login">Login</Button>
-                <Button color="inherit" component={Link} to="/knowmore">Know More</Button>
-                <Button color="inherit" component={Link} to="/signup">Signup</Button> {/* Add the Signup link */}
+                <Button color="inherit" component={Link} to="/" className="nav-button">Home</Button>
+                <Button color="inherit" component={Link} to="/login" className="nav-button">Login</Button>
+                <Button color="inherit" component={Link} to="/knowmore" className="nav-button">Know More</Button>
+                <Button color="inherit" component={Link} to="/signup" className="nav-button">Signup</Button> {/* Add the Signup link */}
                 </div>
             </Toolbar>
         </AppBar>
