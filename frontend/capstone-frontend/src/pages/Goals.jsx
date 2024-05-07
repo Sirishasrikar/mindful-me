@@ -6,10 +6,10 @@ import "../App.css"
 const linkStyle = {
     fontSize: '30px',
     color: 'yellow'
-  };
+};
 
 const Goals = () => {
-   
+
     const { user } = useAuth();
     const [goals, setGoals] = useState([]);
     const [recentActivity, setRecentActivity] = useState([]);
@@ -82,7 +82,7 @@ const Goals = () => {
                     description: '',
                     startdate: '',
                     duration: '',
-                    status: '' ,
+                    status: '',
                     //uname: ''
                     uname: user ? user._id : ''
                 });
@@ -96,6 +96,7 @@ const Goals = () => {
 
     const handleUpdate = async (id) => {
         try {
+
             const response = await fetch(`http://localhost:5000/Goal/${id}`);
             if (response.ok) {
                 const data = await response.json();
@@ -107,7 +108,7 @@ const Goals = () => {
                     duration: data.duration || '',
                     status: data.status || '',
                     //uname: data.uname || ''
-                    uname: user ? user._id : ''|| ''
+                    uname: user ? user._id : '' || ''
                 });
                 // Set selected goal ID
                 setSelectedGoalId(id);
@@ -302,8 +303,8 @@ const Goals = () => {
             </ul>
             {/* Update message */}
             {updateMessage && <p>{updateMessage}</p>}
-            <p style={{ fontSize: '30px'}}>
-            <Link to="/dashboard" style={linkStyle}>Back to Dashboard</Link>
+            <p style={{ fontSize: '30px' }}>
+                <Link to="/dashboard" style={linkStyle}>Back to Dashboard</Link>
             </p>
         </div>
     );

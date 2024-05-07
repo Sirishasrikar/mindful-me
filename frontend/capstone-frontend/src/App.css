@@ -109,7 +109,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  color: rgba(242, 242, 5, 0.986);
+  color: rgba(193, 86, 232, 0.986);
 }
 
 .form-group {
@@ -328,6 +328,7 @@ button {
   list-style-type: none; /* Remove default bullet points */
   padding: 0; /* Remove default padding */
   color : rgba(242, 242, 5, 0.986);
+  font-size: 1.5em;
 }
 
 .journal-list li {

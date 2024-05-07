@@ -18,18 +18,14 @@ const Home = () => {
 
     return (
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>Welcome to Mindful Me</h1>
-            <p style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Explore mindfulness and well-being with us.</p>
-            {/* Buttons for Knowmore, Login, and Signup */}
-            <div style={{ margin: '10px 0' }}>
-                <button onClick={handleKnowMoreClick}>Knowmore</button>
-            </div>
-            <div style={{ margin: '10px 0' }}>
-                <button onClick={handleLoginClick}>Login</button>
-            </div>
-            <div style={{ margin: '10px 0' }}>
-                <button onClick={handleSignupClick}>Signup</button>
-            </div>
+            <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'yellow' }}>Welcome to Mindful Me</h1>
+            <p style={{ fontSize: '2em', fontWeight: 'bold', color: 'yellow' }}>Explore mindfulness and well-being with us.</p>
+            <p style={{ fontSize: '2em', marginBottom: '5px', color: 'yellow' }}>Want to explore more? 
+            <span style={{ fontWeight: 'bold', color: 'blue', cursor: 'pointer' }} onClick={handleKnowMoreClick}>Know More</span></p>
+            <p style={{ fontSize: '2em', marginBottom: '5px', color: 'yellow' }}>Already a user? 
+            <span style={{ fontWeight: 'bold', color: 'blue', cursor: 'pointer' }} onClick={handleLoginClick}>Login</span></p><br/>
+            <p style={{ fontSize: '2em', marginTop: '5px', color: 'yellow' }}>New here? 
+            <span style={{ fontWeight: 'bold', color: 'blue', cursor: 'pointer' }} onClick={handleSignupClick}>Sign up</span></p>
         </div>
     );
 };
