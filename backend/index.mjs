@@ -23,7 +23,6 @@ app.use(express.json());
 
 // Define routes
 app.use("/User",userRoutes);
-// app.use("/Auth", authRoutes);
 app.use("/Goal",goalRoutes);
 app.use("/JournalEntry",journalRoutes);
 app.use("/MeditationSession",meditationRoutes);
