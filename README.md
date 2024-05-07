@@ -14,3 +14,4 @@ AuthContext along with AuthProvider has been used so that it can be called in di
 App.css has been used for all the styling. 
 After the user signs up, message id displayed that the sign up has been successful and then the link to Login page is provided. Now the user can click on the link and login. 
 The user then is directed to the Dashboard page. 
+https://github.com/Sirishasrikar/mindful-me
